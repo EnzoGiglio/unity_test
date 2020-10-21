@@ -4,54 +4,51 @@ using UnityEngine;
 
 public class SimpleMove : MonoBehaviour
 {
-    //Attributs
+    //Enonciation des variables
 
-    public static float GlobalSpeed = 1.0f;
-    public float Speed = 1.0f;
-    public Vector3 Direction = new Vector3(0, 0, 1);
+    public Transform target;
+    public float vitesse = 1.0f;
+    private Vector3 randomTargetPos;
+    public float randomTargetDistMin = 2;
+    public float randomTargetDistMax = 10;
+    public bool useRandomTarget = false;
 
-    [System.Serializable]
+    //Setup avant 1ière frame
 
-    public class Etape
+    void Start()
     {
-        public Vector3 Position;
-        public float TimetoReach;
+        SetRandomTargetPos();
+        
     }
 
-    public Etape[] Chemin;
-
-    //Méthodes
-
-    public void Start()
+    void SetRandomTargetPos()
     {
-        //AvanceCube(10, Vector3.up);
+        randomTargetPos = Random.onUnitSphere;
+        randomTargetPos.y = 0;
+        randomTargetPos = randomTargetPos.normalized * Random.Range(randomTargetDistMin, randomTargetDistMax);
     }
+
+    //Update 1 fois / frame
 
     void Update()
     {
-        transform.Rotate(Speed * Time.deltaTime, 0, 0);
-    }
+        //Mise a jout du comportement
 
+        if (target == null)
+            useRandomTarget = true;
 
-    private void AvanceCube(float distance, Vector3 direction)
-    {
-        this.transform.position = this.transform.position + (direction.normalized * distance);
-    }
+        //Calcul du point de destination
 
+        Vector3 targetPos;
+        if (useRandomTarget || target == null)
+            targetPos = randomTargetPos;
+        else
+            targetPos = target.position;
 
-    private void OnDrawGizmosSelected()
-    {
-        for (int i = 0; i < Chemin.Length; i++)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(Chemin[i].Position, 0.3f);
-        }
-        /*
-        Gizmos.color = Color.blue;
-        foreach (Etape e in Chemin)
-        {
-            Gizmos.DrawSphere(e.Position, 0.3f);
-        }
-        */
+        //Deplacement
+
+        Vector3 deplacement = target.position - transform.position;
+        deplacement = deplacement.normalized * vitesse * Time.deltaTime;
+        transform.position += deplacement;
     }
 }
