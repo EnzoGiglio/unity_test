@@ -9,11 +9,14 @@ public class Controller : MonoBehaviour
     float axisH, axisV;
 
     [SerializeField]
-    float walkSpeed = 2f, runSpeed = 8f, rotSpeed = 150f;
+    float walkSpeed = 2f, runSpeed = 8f, rotSpeed = 150f, jumpForce = 350;
+    Rigidbody rb;
+
 
     private void Awake()
     {
         maincharacterAnimator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     } 
 
 
@@ -44,5 +47,14 @@ public class Controller : MonoBehaviour
 
         if(axisV !=0)
         transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime * axisH);
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce);
+            maincharacterAnimator.SetTrigger("jump");
+        }
     }
 }
