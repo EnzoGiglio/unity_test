@@ -201,7 +201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238002864168285461}
-  - component: {fileID: 4333558331163491668}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -226,35 +225,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4333558331163491668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238002864168285463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1bc65e88aad1e499bae2dd16a2254f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneRepulsion: 5
-  zoneAlignement: 9
-  zoneAttraction: 50
-  hauteurSol: 0
-  forceRepulsion: 15
-  forceAlignement: 3
-  forceAttraction: 20
-  forceRejetSol: 100
-  target: {x: 0, y: 0, z: 0}
-  forceTarget: 15
-  goToTarget: 0
-  stopToTarget: 0
-  velocity: {x: 0, y: 0, z: 0}
-  maxSpeed: 20
-  minSpeed: 10
-  drawGizmos: 0
-  drawLines: 0
 --- !u!1 &1238002864229796519
 GameObject:
   m_ObjectHideFlags: 0
