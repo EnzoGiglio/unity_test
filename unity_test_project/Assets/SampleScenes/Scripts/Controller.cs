@@ -28,7 +28,7 @@ public class Controller : MonoBehaviour
 
         if(axisV>0)
         {
-            if (Input.GetKey(KeyCode.Keypad0))
+            if (Input.GetKey(KeyCode.Keypad1))
             {
                 transform.Translate(Vector3.forward * runSpeed * axisV * Time.deltaTime);
                 maincharacterAnimator.SetFloat("run", axisV);
